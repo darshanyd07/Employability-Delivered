@@ -1,15 +1,18 @@
-mysql> select * from employee_payroll where name = 'yukta';
-+-------+---------+--------+-------------+----------+--------------+-----------------+
-| name  | address | city   | state       | zip_code | phone_number | email           |
-+-------+---------+--------+-------------+----------+--------------+-----------------+
-| yukta | Burli   | devgad | Maharashtra |   402107 |   9843261782 | darsh@gmail.com |
-+-------+---------+--------+-------------+----------+--------------+-----------------+
-1 row in set (0.05 sec)
+mysql> update employee_payroll set name = 'darshan' where name = 'darsh';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> select * from employee_payroll where name = 'darsh';
-+-------+---------+---------+-------------+----------+--------------+-----------------+
-| name  | address | city    | state       | zip_code | phone_number | email           |
-+-------+---------+---------+-------------+----------+--------------+-----------------+
-| darsh | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com |
-+-------+---------+---------+-------------+----------+--------------+-----------------+
-1 row in set (0.00 sec)
+mysql> update employee_payroll set name = 'yoshiwaree' where name = 'yojana';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++------------+---------+---------+-------------+----------+--------------+------------------+
+| name       | address | city    | state       | zip_code | phone_number | email            |
++------------+---------+---------+-------------+----------+--------------+------------------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |
++------------+---------+---------+-------------+----------+--------------+------------------+
+4 rows in set (0.00 sec)
