@@ -1,29 +1,16 @@
-C:\Program Files\MySQL\MySQL Server 8.0\bin>MySql -u root -p
-Enter password: **********
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 70
-Server version: 8.0.30 MySQL Community Server - GPL
+mysql> use payroll_service;
+Database changed
 
-Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+mysql> create table payroll( Id int PRIMARY KEY AUTO_INCREMENT ,Name varchar(30) not null, Salary int not null,Start_Date Date not null);
+Query OK, 0 rows affected (0.33 sec)
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> create database payroll_service;
-Query OK, 1 row affected (0.01 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| darshan            |
-| information_schema |
-| mysql              |
-| payroll_service    |
-| performance_schema |
-| sys                |
-+--------------------+
-6 rows in set (0.01 sec)
+mysql> desc payroll;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Id         | int         | NO   | PRI | NULL    | auto_increment |
+| Name       | varchar(30) | NO   |     | NULL    |                |
+| Salary     | int         | NO   |     | NULL    |                |
+| Start_Date | date        | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.07 sec)
