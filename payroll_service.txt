@@ -1,16 +1,23 @@
-mysql> use payroll_service;
-Database changed
 
-mysql> create table payroll( Id int PRIMARY KEY AUTO_INCREMENT ,Name varchar(30) not null, Salary int not null,Start_Date Date not null);
-Query OK, 0 rows affected (0.33 sec)
+mysql> create table employee_payroll(name varchar(50) not null,address varchar(100) not null,city varchar(50) not null,state varchar(50) not null,zip_code int not null,phone_number double not null,email varchar(100) not null);
+Query OK, 0 rows affected (0.03 sec)
 
-mysql> desc payroll;
-+------------+-------------+------+-----+---------+----------------+
-| Field      | Type        | Null | Key | Default | Extra          |
-+------------+-------------+------+-----+---------+----------------+
-| Id         | int         | NO   | PRI | NULL    | auto_increment |
-| Name       | varchar(30) | NO   |     | NULL    |                |
-| Salary     | int         | NO   |     | NULL    |                |
-| Start_Date | date        | NO   |     | NULL    |                |
-+------------+-------------+------+-----+---------+----------------+
-4 rows in set (0.07 sec)
+mysql> desc employee_payroll;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| name         | varchar(50)  | NO   |     | NULL    |       |
+| address      | varchar(100) | NO   |     | NULL    |       |
+| city         | varchar(50)  | NO   |     | NULL    |       |
+| state        | varchar(50)  | NO   |     | NULL    |       |
+| zip_code     | int          | NO   |     | NULL    |       |
+| phone_number | double       | NO   |     | NULL    |       |
+| email        | varchar(100) | NO   |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql>  insert into employee_payroll VALUES('yukta','Burli', 'devgad', 'Maharashtra', 402107, 9843261782, 'darsh@gmail.com');
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  insert into employee_payroll VALUES('darsh','Mumbai' ,'Alibaug','Maharashtra', 403407, 9843265665, 'yukta@gmail.com');
+Query OK, 1 row affected (0.01 sec)
