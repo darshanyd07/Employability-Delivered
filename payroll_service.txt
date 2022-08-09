@@ -1,8 +1,15 @@
-mysql> select * from employee_payroll;
+mysql> select * from employee_payroll where name = 'yukta';
++-------+---------+--------+-------------+----------+--------------+-----------------+
+| name  | address | city   | state       | zip_code | phone_number | email           |
++-------+---------+--------+-------------+----------+--------------+-----------------+
+| yukta | Burli   | devgad | Maharashtra |   402107 |   9843261782 | darsh@gmail.com |
++-------+---------+--------+-------------+----------+--------------+-----------------+
+1 row in set (0.05 sec)
+
+mysql> select * from employee_payroll where name = 'darsh';
 +-------+---------+---------+-------------+----------+--------------+-----------------+
 | name  | address | city    | state       | zip_code | phone_number | email           |
 +-------+---------+---------+-------------+----------+--------------+-----------------+
-| yukta | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com |
 | darsh | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com |
 +-------+---------+---------+-------------+----------+--------------+-----------------+
-2 rows in set (0.04 sec)
+1 row in set (0.00 sec)
