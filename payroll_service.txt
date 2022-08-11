@@ -1,52 +1,77 @@
 mysql> select * from employee_payroll;
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-| name       | address | city    | state       | zip_code | phone_number | email            | salary |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 |
-| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 |
-| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 |
-| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-4 rows in set (0.21 sec)
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department | basic_pay | deductions |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |         0 |          0 |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |         0 |          0 |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |         0 |          0 |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |         0 |          0 |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+
+4 rows in set (0.05 sec)
 
-mysql> alter table employee_payroll add department varchar(30);
-Query OK, 0 rows affected (0.14 sec)
+
+mysql> alter table employee_payroll add taxable_pay float not null;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> alter table employee_payroll add income_tax float not null ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add net_pay float not null ;
+Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> select * from employee_payroll;
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
-| name       | address | city    | state       | zip_code | phone_number | email            | salary | department |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
-| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | NULL       |
-| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | NULL       |
-| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | NULL       |
-| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | NULL       |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department | basic_pay | deductions | taxable_pay | income_tax | net_pay |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |         0 |          0 |           0 |          0 |       0 |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |         0 |          0 |           0 |          0 |       0 |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |         0 |          0 |           0 |          0 |       0 |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |         0 |          0 |           0 |          0 |       0 |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> update employee_payroll set department = 'IT' where name = 'yukta';
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update employee_payroll set department = 'IT' where name = 'darshan';
+mysql> update employee_payroll set basic_pay = 22000 , deductions = 3000 , taxable_pay = 1000 , income_tax = 5000 where name = 'yoshiwaree';
 Query OK, 1 row affected (0.02 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> update employee_payroll set department = 'ME' where name = 'yoshiwaree';
-Query OK, 1 row affected (0.01 sec)
+mysql> update employee_payroll set basic_pay = 400000 , deductions = 30000 , taxable_pay = 1000 , income_tax = 5000 where name = 'yukta';
+Query OK, 1 row affected (0.10 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> update employee_payroll set department = 'IC' where name = 'yogita';
+mysql> update employee_payroll set basic_pay = 400000 , deductions = 20000 , taxable_pay = 1000 , income_tax = 500 where name = 'yoshiwaree';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set basic_pay = 40000 , deductions = 2000 , taxable_pay = 1000 , income_tax = 500 where name = 'yogita';
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 mysql> select * from employee_payroll;
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
-| name       | address | city    | state       | zip_code | phone_number | email            | salary | department |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
-| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |
-| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |
-| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |
-| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department | basic_pay | deductions | taxable_pay | income_tax | net_pay |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |    400000 |      30000 |        1000 |       5000 |       0 |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |         0 |          0 |           0 |          0 |       0 |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |    400000 |      20000 |        1000 |        500 |       0 |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |     40000 |       2000 |        1000 |        500 |       0 |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set basic_pay = 350000 , deductions = 30000 , taxable_pay = 10000 , income_tax = 5000 where name = 'darshan';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department | basic_pay | deductions | taxable_pay | income_tax | net_pay |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |    400000 |      30000 |        1000 |       5000 |       0 |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |    350000 |      30000 |       10000 |       5000 |       0 |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |    400000 |      20000 |        1000 |        500 |       0 |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |     40000 |       2000 |        1000 |        500 |       0 |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+-----------+------------+-------------+------------+---------+
 4 rows in set (0.00 sec)
