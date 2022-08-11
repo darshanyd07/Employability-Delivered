@@ -1,34 +1,3 @@
-mysql> ALTER TABLE employee_payroll ADD salary int not null;
-Query OK, 0 rows affected (0.41 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> select * from employee_payroll;
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-| name       | address | city    | state       | zip_code | phone_number | email            | salary |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |      0 |
-| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |      0 |
-| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |      0 |
-| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |      0 |
-+------------+---------+---------+-------------+----------+--------------+------------------+--------+
-4 rows in set (0.01 sec)
-
-mysql> update employee_payroll set salary = 32000 where name = 'yukta' ;
-Query OK, 1 row affected (0.04 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update employee_payroll set salary = 42000 where name = 'darshan' ;
-Query OK, 1 row affected (0.02 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update employee_payroll set salary = 22000 where name = 'yoshiwaree' ;
-Query OK, 1 row affected (0.03 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update employee_payroll set salary = 12000 where name = 'yogita' ;
-Query OK, 1 row affected (0.02 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
 mysql> select * from employee_payroll;
 +------------+---------+---------+-------------+----------+--------------+------------------+--------+
 | name       | address | city    | state       | zip_code | phone_number | email            | salary |
@@ -38,44 +7,46 @@ mysql> select * from employee_payroll;
 | yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 |
 | yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 |
 +------------+---------+---------+-------------+----------+--------------+------------------+--------+
+4 rows in set (0.21 sec)
+
+mysql> alter table employee_payroll add department varchar(30);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | NULL       |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | NULL       |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | NULL       |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | NULL       |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
 4 rows in set (0.00 sec)
 
-mysql> SELECT SUM(salary) as Sum_Salary FROM employee_payroll;
-+------------+
-| Sum_Salary |
-+------------+
-|     108000 |
-+------------+
-1 row in set (0.02 sec)
+mysql> update employee_payroll set department = 'IT' where name = 'yukta';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> SELECT AVG(salary) as avg_Salary FROM employee_payroll;
-+------------+
-| avg_Salary |
-+------------+
-| 27000.0000 |
-+------------+
-1 row in set (0.00 sec)
+mysql> update employee_payroll set department = 'IT' where name = 'darshan';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> SELECT max(salary) as Max_Salary FROM employee_payroll;
-+------------+
-| Max_Salary |
-+------------+
-|      42000 |
-+------------+
-1 row in set (0.01 sec)
+mysql> update employee_payroll set department = 'ME' where name = 'yoshiwaree';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> SELECT MIN(salary) as Min_Salary FROM employee_payroll;
-+------------+
-| Min_Salary |
-+------------+
-|      12000 |
-+------------+
-1 row in set (0.00 sec)
+mysql> update employee_payroll set department = 'IC' where name = 'yogita';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> SELECT COUNT(salary) as COUNT_Salary FROM employee_payroll;
-+--------------+
-| COUNT_Salary |
-+--------------+
-|            4 |
-+--------------+
-1 row in set (0.09 sec)
+mysql> select * from employee_payroll;
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
+| name       | address | city    | state       | zip_code | phone_number | email            | salary | department |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
+| yukta      | Burli   | devgad  | Maharashtra |   402107 |   9843261782 | darsh@gmail.com  |  32000 | IT         |
+| darshan    | Mumbai  | Alibaug | Maharashtra |   403407 |   9843265665 | yukta@gmail.com  |  42000 | IT         |
+| yoshiwaree | Devgad  | morve   | Maharashtra |   413244 |    984532662 | man@gmail.com    |  22000 | ME         |
+| yogita     | Devgad  | hindle  | Maharashtra |   413544 |      9832662 | yogita@gmail.com |  12000 | IC         |
++------------+---------+---------+-------------+----------+--------------+------------------+--------+------------+
+4 rows in set (0.00 sec)
